@@ -10,16 +10,14 @@ import (
 )
 
 var books = []models.Book{
-	{ID: 1, Title: "Go Programming", AuthorID: 1, CategoryID: 1, Price: 29.99},
+	{ID: 1, Title: "Abai joly", AuthorID: 1, CategoryID: 1, Price: 29.99},
 }
 
-// GetBooks возвращает список всех книг
 func GetBooks(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(books)
 }
 
-// GetBook возвращает книгу по ID
 func GetBook(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 	id, _ := strconv.Atoi(params["id"])
@@ -32,7 +30,6 @@ func GetBook(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusNotFound)
 }
 
-// CreateBook добавляет новую книгу
 func CreateBook(w http.ResponseWriter, r *http.Request) {
 	var book models.Book
 	json.NewDecoder(r.Body).Decode(&book)
@@ -42,7 +39,6 @@ func CreateBook(w http.ResponseWriter, r *http.Request) {
 	json.NewEncoder(w).Encode(book)
 }
 
-// UpdateBook обновляет данные книги
 func UpdateBook(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 	id, _ := strconv.Atoi(params["id"])
@@ -57,7 +53,6 @@ func UpdateBook(w http.ResponseWriter, r *http.Request) {
 	w.WriteHeader(http.StatusNotFound)
 }
 
-// DeleteBook удаляет книгу
 func DeleteBook(w http.ResponseWriter, r *http.Request) {
 	params := mux.Vars(r)
 	id, _ := strconv.Atoi(params["id"])

@@ -7,17 +7,15 @@ import (
 )
 
 var authors = []models.Author{
-	{ID: 1, Name: "John Doe"},
-	{ID: 2, Name: "Jane Smith"},
+	{ID: 1, Name: "Abai Kunanbai"},
+	{ID: 2, Name: "Mukhtar Auezov"},
 }
 
-// GetAuthors возвращает список всех авторов
 func GetAuthors(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	json.NewEncoder(w).Encode(authors)
 }
 
-// CreateAuthor добавляет нового автора
 func CreateAuthor(w http.ResponseWriter, r *http.Request) {
 	var author models.Author
 	json.NewDecoder(r.Body).Decode(&author)
