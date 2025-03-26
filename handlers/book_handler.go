@@ -15,6 +15,20 @@ var books = []models.Book{
 
 func GetBooks(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
+
+	for i, book := range books {
+		for _, author := range authors {
+			if book.AuthorID == author.ID {
+				books[i].Author = &author
+			}
+		}
+		for _, category := range categories {
+			if book.CategoryID == category.ID {
+				books[i].Category = &category
+			}
+		}
+	}
+
 	json.NewEncoder(w).Encode(books)
 }
 
