@@ -55,7 +55,7 @@ func GetBooks(w http.ResponseWriter, r *http.Request) {
 		end = len(filteredBooks)
 	}
 
-	// Результат
+	// Результатко
 	json.NewEncoder(w).Encode(filteredBooks[start:end])
 }
 
